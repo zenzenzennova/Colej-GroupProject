@@ -7,6 +7,14 @@
  *
  * @author Zennova
  */
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
 public class TopUpWindow extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TopUpWindow.class.getName());
@@ -105,6 +113,8 @@ public class TopUpWindow extends javax.swing.JFrame {
                 PaymentDialog.show(this, ringkasan, nominal);
             }
         });
+
+        applyFuturisticLayout();
     }
 
     /**
@@ -130,7 +140,7 @@ public class TopUpWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        BackgroundGame.setBackground(new java.awt.Color(204, 255, 255));
+        BackgroundGame.setBackground(new java.awt.Color(244, 239, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Top Up Game, Mambo Store");
@@ -138,21 +148,21 @@ public class TopUpWindow extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Untuk saat ini, berikut adalah pilihan Game yang tersedia:");
 
-        valorantButton.setBackground(new java.awt.Color(255, 51, 51));
+        valorantButton.setBackground(new java.awt.Color(124, 57, 226));
         valorantButton.setFont(new java.awt.Font("SimSun-ExtG", 0, 12)); // NOI18N
         valorantButton.setText("Valorant");
         valorantButton.addActionListener(this::valorantButtonActionPerformed);
 
-        hsrButton.setBackground(new java.awt.Color(0, 102, 153));
+        hsrButton.setBackground(new java.awt.Color(104, 75, 203));
         hsrButton.setFont(new java.awt.Font("SimSun-ExtG", 0, 12)); // NOI18N
         hsrButton.setForeground(new java.awt.Color(255, 255, 255));
         hsrButton.setText("Honkai: Star Rail");
 
-        mlbbButton.setBackground(new java.awt.Color(51, 204, 255));
+        mlbbButton.setBackground(new java.awt.Color(145, 84, 243));
         mlbbButton.setFont(new java.awt.Font("SimSun-ExtG", 0, 12)); // NOI18N
         mlbbButton.setText("Mobile Legends: Bang Bang");
 
-        wuwaButton.setBackground(new java.awt.Color(204, 204, 204));
+        wuwaButton.setBackground(new java.awt.Color(84, 62, 158));
         wuwaButton.setFont(new java.awt.Font("SimSun-ExtG", 0, 12)); // NOI18N
         wuwaButton.setText("Wuthering Waves");
 
@@ -161,11 +171,11 @@ public class TopUpWindow extends javax.swing.JFrame {
 
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
-        confirmButton.setBackground(new java.awt.Color(0, 255, 51));
+        confirmButton.setBackground(new java.awt.Color(116, 57, 232));
         confirmButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         confirmButton.setText("Konfirmasi");
 
-        backButton.setBackground(new java.awt.Color(255, 51, 102));
+        backButton.setBackground(new java.awt.Color(82, 61, 151));
         backButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backButton.setText("Kembali");
         backButton.addActionListener(this::backButtonActionPerformed);
@@ -251,6 +261,75 @@ public class TopUpWindow extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void applyFuturisticLayout() {
+        FuturisticUI.BackgroundPanel root = FuturisticUI.background("/assets/bgGameViolet.png");
+        root.setLayout(new BorderLayout(0, 18));
+        root.setBorder(new EmptyBorder(18, 22, 22, 22));
+
+        root.add(FuturisticUI.banner("/assets/bannerMain.png", 260), BorderLayout.NORTH);
+
+        FuturisticUI.GlassPanel panel = FuturisticUI.glass(new BorderLayout(18, 18));
+
+        JPanel header = new JPanel();
+        header.setOpaque(false);
+        header.setLayout(new BoxLayout(header, BoxLayout.Y_AXIS));
+
+        FuturisticUI.title(jLabel1, "Top Up Game", 30);
+        jLabel1.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        FuturisticUI.body(jLabel2, "Pilih game tujuan, lalu masukkan nominal top up dalam Rupiah.", 15);
+        jLabel2.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+
+        header.add(jLabel1);
+        header.add(Box.createVerticalStrut(6));
+        header.add(jLabel2);
+
+        JPanel gameGrid = new JPanel(new GridLayout(2, 2, 14, 14));
+        gameGrid.setOpaque(false);
+
+        FuturisticUI.styleToggleButton(valorantButton, new Color(124, 57, 226), new Color(196, 170, 255));
+        FuturisticUI.styleToggleButton(hsrButton, new Color(104, 75, 203), new Color(180, 149, 255));
+        FuturisticUI.styleToggleButton(mlbbButton, new Color(145, 84, 243), new Color(212, 195, 255));
+        FuturisticUI.styleToggleButton(wuwaButton, new Color(84, 62, 158), new Color(177, 145, 244));
+
+        gameGrid.add(valorantButton);
+        gameGrid.add(hsrButton);
+        gameGrid.add(mlbbButton);
+        gameGrid.add(wuwaButton);
+
+        JPanel formStack = new JPanel();
+        formStack.setOpaque(false);
+        formStack.setLayout(new BoxLayout(formStack, BoxLayout.Y_AXIS));
+
+        FuturisticUI.body(jLabel3, "Nominal top up (Rupiah)", 15);
+        jLabel3.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        FuturisticUI.styleTextField(jTextField1);
+        jTextField1.setMaximumSize(new java.awt.Dimension(Integer.MAX_VALUE, 54));
+        jTextField1.setPreferredSize(new java.awt.Dimension(10, 54));
+
+        JPanel actions = new JPanel(new GridLayout(1, 2, 14, 0));
+        actions.setOpaque(false);
+        FuturisticUI.styleCommandButton(confirmButton, FuturisticUI.VIOLET, new Color(177, 139, 255));
+        FuturisticUI.styleCommandButton(backButton, new Color(82, 61, 151), new Color(151, 108, 232));
+        actions.add(confirmButton);
+        actions.add(backButton);
+
+        formStack.add(jLabel3);
+        formStack.add(Box.createVerticalStrut(10));
+        formStack.add(jTextField1);
+        formStack.add(Box.createVerticalStrut(14));
+        formStack.add(actions);
+
+        panel.add(header, BorderLayout.NORTH);
+        panel.add(gameGrid, BorderLayout.CENTER);
+        panel.add(formStack, BorderLayout.SOUTH);
+
+        root.add(panel, BorderLayout.CENTER);
+        setContentPane(root);
+        FuturisticUI.prepareFrame(this, "Mambo Store - Top Up Game", 1040, 740);
+        revalidate();
+        repaint();
+    }
 
     /**
      * @param args the command line arguments

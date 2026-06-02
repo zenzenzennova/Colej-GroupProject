@@ -7,22 +7,42 @@
  *
  * @author Zennova
  */
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
+
 public class PulsaWindow extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PulsaWindow.class.getName());
+    private javax.swing.JToggleButton pulsaAxisButton;
+    private javax.swing.JToggleButton pulsaSmartfrenButton;
+    private javax.swing.JToggleButton emoneyOvoButton;
+    private javax.swing.JToggleButton emoneyShopeePayButton;
 
     /**
      * Creates new form PulsaWindow
      */
     public PulsaWindow() {
         initComponents();
+        initAdditionalProductButtons();
         
         // ===== 1. TOGGLE: hanya bisa pilih 1 =====
         javax.swing.ButtonGroup pulsaGroup = new javax.swing.ButtonGroup();
         pulsaGroup.add(pulsaTelkomselButton);
+        pulsaGroup.add(pulsaAxisButton);
+        pulsaGroup.add(pulsaSmartfrenButton);
         pulsaGroup.add(emoneyGopayButton);
         pulsaGroup.add(pulsaTriButton);
         pulsaGroup.add(emoneyDanaButton);
+        pulsaGroup.add(emoneyOvoButton);
+        pulsaGroup.add(emoneyShopeePayButton);
         pulsaGroup.add(pulsaXLButton);
 
         // ===== 2. BACK BUTTON =====
@@ -40,12 +60,20 @@ public class PulsaWindow extends javax.swing.JFrame {
 
             if (pulsaTelkomselButton.isSelected()) {
                 selectedProduct = "Pulsa Telkomsel"; isPulsa = true;
+            } else if (pulsaAxisButton.isSelected()) {
+                selectedProduct = "Pulsa Axis"; isPulsa = true;
+            } else if (pulsaSmartfrenButton.isSelected()) {
+                selectedProduct = "Pulsa Smartfren"; isPulsa = true;
             } else if (emoneyGopayButton.isSelected()) {
                 selectedProduct = "E-money GoPay"; isPulsa = false;
             } else if (pulsaTriButton.isSelected()) {
                 selectedProduct = "Pulsa 3 (Tri)"; isPulsa = true;
             } else if (emoneyDanaButton.isSelected()) {
                 selectedProduct = "E-money DANA"; isPulsa = false;
+            } else if (emoneyOvoButton.isSelected()) {
+                selectedProduct = "E-money OVO"; isPulsa = false;
+            } else if (emoneyShopeePayButton.isSelected()) {
+                selectedProduct = "E-money ShopeePay"; isPulsa = false;
             } else if (pulsaXLButton.isSelected()) {
                 selectedProduct = "Pulsa XL"; isPulsa = true;
             } else {
@@ -130,6 +158,8 @@ public class PulsaWindow extends javax.swing.JFrame {
                 PaymentDialog.show(this, ringkasan, total);
             }
         });
+
+        applyFuturisticLayout();
     }
 
     /**
@@ -156,7 +186,7 @@ public class PulsaWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        BackgroundPulsa.setBackground(new java.awt.Color(204, 204, 255));
+        BackgroundPulsa.setBackground(new java.awt.Color(244, 239, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Top Up Pulsa & E-money, Mambo Store");
@@ -164,25 +194,25 @@ public class PulsaWindow extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Untuk saat ini, berikut adalah pilihan Top Up yang tersedia:");
 
-        pulsaTelkomselButton.setBackground(new java.awt.Color(255, 51, 51));
+        pulsaTelkomselButton.setBackground(new java.awt.Color(124, 57, 226));
         pulsaTelkomselButton.setFont(new java.awt.Font("SimSun-ExtG", 0, 12)); // NOI18N
         pulsaTelkomselButton.setForeground(new java.awt.Color(255, 255, 255));
         pulsaTelkomselButton.setText("Pulsa (Telkomsel)");
         pulsaTelkomselButton.addActionListener(this::pulsaTelkomselButtonActionPerformed);
 
-        emoneyGopayButton.setBackground(new java.awt.Color(102, 255, 255));
+        emoneyGopayButton.setBackground(new java.awt.Color(104, 75, 203));
         emoneyGopayButton.setFont(new java.awt.Font("SimSun-ExtG", 0, 12)); // NOI18N
         emoneyGopayButton.setText("E-money (Gopay)");
 
-        pulsaTriButton.setBackground(new java.awt.Color(255, 102, 204));
+        pulsaTriButton.setBackground(new java.awt.Color(145, 84, 243));
         pulsaTriButton.setFont(new java.awt.Font("SimSun-ExtG", 0, 12)); // NOI18N
         pulsaTriButton.setText("Pulsa (3)");
 
-        emoneyDanaButton.setBackground(new java.awt.Color(0, 204, 255));
+        emoneyDanaButton.setBackground(new java.awt.Color(95, 68, 190));
         emoneyDanaButton.setFont(new java.awt.Font("SimSun-ExtG", 0, 12)); // NOI18N
         emoneyDanaButton.setText("E-money (Dana)");
 
-        pulsaXLButton.setBackground(new java.awt.Color(0, 0, 204));
+        pulsaXLButton.setBackground(new java.awt.Color(84, 62, 158));
         pulsaXLButton.setFont(new java.awt.Font("SimSun-ExtG", 0, 12)); // NOI18N
         pulsaXLButton.setForeground(new java.awt.Color(255, 255, 255));
         pulsaXLButton.setText("Pulsa (XL)");
@@ -193,11 +223,11 @@ public class PulsaWindow extends javax.swing.JFrame {
 
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
-        confirmButton.setBackground(new java.awt.Color(0, 255, 51));
+        confirmButton.setBackground(new java.awt.Color(116, 57, 232));
         confirmButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         confirmButton.setText("Konfirmasi");
 
-        backButton.setBackground(new java.awt.Color(255, 51, 102));
+        backButton.setBackground(new java.awt.Color(82, 61, 151));
         backButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backButton.setText("Kembali");
         backButton.addActionListener(this::backButtonActionPerformed);
@@ -285,6 +315,100 @@ public class PulsaWindow extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void initAdditionalProductButtons() {
+        pulsaAxisButton = new javax.swing.JToggleButton("Pulsa (Axis)");
+        pulsaSmartfrenButton = new javax.swing.JToggleButton("Pulsa (Smartfren)");
+        emoneyOvoButton = new javax.swing.JToggleButton("E-money (OVO)");
+        emoneyShopeePayButton = new javax.swing.JToggleButton("E-money (ShopeePay)");
+    }
+
+    private void applyFuturisticLayout() {
+        FuturisticUI.BackgroundPanel root = FuturisticUI.background("/assets/bannerPulsa.png");
+        root.setLayout(new BorderLayout(0, 18));
+        root.setBorder(new EmptyBorder(18, 22, 22, 22));
+
+        root.add(FuturisticUI.banner("/assets/bannerPulsa.png", 230), BorderLayout.NORTH);
+
+        FuturisticUI.GlassPanel panel = FuturisticUI.glass(new BorderLayout(18, 18));
+
+        JPanel header = new JPanel();
+        header.setOpaque(false);
+        header.setLayout(new BoxLayout(header, BoxLayout.Y_AXIS));
+
+        FuturisticUI.title(jLabel1, "Top Up Pulsa & E-Money", 30);
+        jLabel1.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        FuturisticUI.body(jLabel2, "Pilih produk tujuan, lalu masukkan nominal top up dalam Rupiah.", 15);
+        jLabel2.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+
+        header.add(jLabel1);
+        header.add(Box.createVerticalStrut(6));
+        header.add(jLabel2);
+
+        JPanel productGrid = new JPanel(new GridLayout(0, 3, 14, 14));
+        productGrid.setOpaque(false);
+
+        FuturisticUI.styleToggleButton(pulsaTelkomselButton, new Color(124, 57, 226), new Color(196, 170, 255));
+        FuturisticUI.styleToggleButton(pulsaAxisButton, new Color(119, 65, 218), new Color(197, 177, 255));
+        FuturisticUI.styleToggleButton(pulsaSmartfrenButton, new Color(108, 72, 194), new Color(190, 162, 250));
+        FuturisticUI.styleToggleButton(emoneyGopayButton, new Color(104, 75, 203), new Color(180, 149, 255));
+        FuturisticUI.styleToggleButton(pulsaTriButton, new Color(145, 84, 243), new Color(212, 195, 255));
+        FuturisticUI.styleToggleButton(emoneyDanaButton, new Color(95, 68, 190), new Color(188, 161, 255));
+        FuturisticUI.styleToggleButton(emoneyOvoButton, new Color(126, 72, 221), new Color(203, 184, 255));
+        FuturisticUI.styleToggleButton(emoneyShopeePayButton, new Color(136, 82, 232), new Color(217, 202, 255));
+        FuturisticUI.styleToggleButton(pulsaXLButton, new Color(84, 62, 158), new Color(177, 145, 244));
+
+        productGrid.add(pulsaTelkomselButton);
+        productGrid.add(pulsaAxisButton);
+        productGrid.add(pulsaTriButton);
+        productGrid.add(pulsaXLButton);
+        productGrid.add(pulsaSmartfrenButton);
+        productGrid.add(emoneyGopayButton);
+        productGrid.add(emoneyDanaButton);
+        productGrid.add(emoneyOvoButton);
+        productGrid.add(emoneyShopeePayButton);
+
+        JScrollPane productScroll = new JScrollPane(productGrid);
+        productScroll.setOpaque(false);
+        productScroll.getViewport().setOpaque(false);
+        productScroll.setBorder(null);
+        productScroll.setPreferredSize(new Dimension(10, 178));
+        productScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        productScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        JPanel formStack = new JPanel();
+        formStack.setOpaque(false);
+        formStack.setLayout(new BoxLayout(formStack, BoxLayout.Y_AXIS));
+
+        FuturisticUI.body(jLabel3, "Nominal top up (Rupiah)", 15);
+        jLabel3.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        FuturisticUI.styleTextField(jTextField1);
+        jTextField1.setMaximumSize(new java.awt.Dimension(Integer.MAX_VALUE, 54));
+        jTextField1.setPreferredSize(new java.awt.Dimension(10, 54));
+
+        JPanel actions = new JPanel(new GridLayout(1, 2, 14, 0));
+        actions.setOpaque(false);
+        FuturisticUI.styleCommandButton(confirmButton, FuturisticUI.VIOLET, new Color(177, 139, 255));
+        FuturisticUI.styleCommandButton(backButton, new Color(82, 61, 151), new Color(151, 108, 232));
+        actions.add(confirmButton);
+        actions.add(backButton);
+
+        formStack.add(jLabel3);
+        formStack.add(Box.createVerticalStrut(10));
+        formStack.add(jTextField1);
+        formStack.add(Box.createVerticalStrut(14));
+        formStack.add(actions);
+
+        panel.add(header, BorderLayout.NORTH);
+        panel.add(productScroll, BorderLayout.CENTER);
+        panel.add(formStack, BorderLayout.SOUTH);
+
+        root.add(panel, BorderLayout.CENTER);
+        setContentPane(root);
+        FuturisticUI.prepareFrame(this, "Mambo Store - Pulsa & E-Money", 1040, 780);
+        revalidate();
+        repaint();
+    }
 
     /**
      * @param args the command line arguments

@@ -7,7 +7,14 @@
  *
  * @author Zennova
  */
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 
 public class MainWindow extends javax.swing.JFrame {
@@ -15,7 +22,7 @@ public class MainWindow extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainWindow.class.getName());
     
-    /**
+/**
      * Creates new form MainWindow
      */
     public MainWindow() {
@@ -39,10 +46,7 @@ public class MainWindow extends javax.swing.JFrame {
             );
         });
         
-        addHoverEffect(gameButton);
-        addHoverEffect(pulsaButton);
-        addHoverEffect(comingSoonButton);
-        
+        applyFuturisticLayout();
     }
 
     /**
@@ -54,95 +58,57 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BackgroundMain = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
         Description = new javax.swing.JLabel();
         Pilihan = new javax.swing.JLabel();
         gameButton = new javax.swing.JButton();
         pulsaButton = new javax.swing.JButton();
         comingSoonButton = new javax.swing.JButton();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        BackgroundMain.setBackground(new java.awt.Color(102, 255, 204));
+        getContentPane().setLayout(null);
 
         Title.setBackground(new java.awt.Color(255, 255, 255));
         Title.setFont(new java.awt.Font("MingLiU-ExtB", 1, 18)); // NOI18N
         Title.setText("Mambo Store");
+        Title.setBounds(0, 0, 130, 24);
+        getContentPane().add(Title);
 
         Description.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         Description.setText("Tempat top up Game dan Pulsa termurah, tercepat, dan terpercaya di Indonesia. Proses Otomatis gak sampai 1 menit.");
+        Description.setBounds(10, 350, 760, 24);
+        getContentPane().add(Description);
 
         Pilihan.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         Pilihan.setText("Mau apa?");
+        Pilihan.setBounds(80, 370, 100, 24);
+        getContentPane().add(Pilihan);
 
-        gameButton.setBackground(new java.awt.Color(153, 255, 255));
+        gameButton.setBackground(new java.awt.Color(177, 139, 255));
         gameButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gameButton.setText("Top up Game");
         gameButton.addActionListener(this::gameButtonActionPerformed);
+        gameButton.setBounds(140, 390, 230, 60);
+        getContentPane().add(gameButton);
 
-        pulsaButton.setBackground(new java.awt.Color(204, 153, 255));
+        pulsaButton.setBackground(new java.awt.Color(207, 188, 255));
         pulsaButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         pulsaButton.setText("Pulsa & E-Money");
+        pulsaButton.setBounds(390, 390, 230, 60);
+        getContentPane().add(pulsaButton);
 
-        comingSoonButton.setBackground(new java.awt.Color(255, 51, 102));
+        comingSoonButton.setBackground(new java.awt.Color(116, 57, 232));
         comingSoonButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comingSoonButton.setText("Coming Soon");
+        comingSoonButton.setBounds(640, 390, 220, 60);
+        getContentPane().add(comingSoonButton);
 
-        javax.swing.GroupLayout BackgroundMainLayout = new javax.swing.GroupLayout(BackgroundMain);
-        BackgroundMain.setLayout(BackgroundMainLayout);
-        BackgroundMainLayout.setHorizontalGroup(
-            BackgroundMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundMainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(BackgroundMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Description, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(BackgroundMainLayout.createSequentialGroup()
-                        .addComponent(Pilihan, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundMainLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Title)
-                .addGap(339, 339, 339))
-            .addGroup(BackgroundMainLayout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(gameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pulsaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(comingSoonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        BackgroundMainLayout.setVerticalGroup(
-            BackgroundMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundMainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Title)
-                .addGap(18, 18, 18)
-                .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Pilihan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(BackgroundMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comingSoonButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pulsaButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(gameButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
-                .addGap(18, 18, 18))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BackgroundMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BackgroundMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bannerMain.png"))); // NOI18N
+        background.setBounds(0, 20, 940, 330);
+        getContentPane().add(background);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -150,6 +116,60 @@ public class MainWindow extends javax.swing.JFrame {
     private void gameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gameButtonActionPerformed
+
+    private void applyFuturisticLayout() {
+        FuturisticUI.BackgroundPanel root = FuturisticUI.background("/assets/bannerMain.png");
+        root.setLayout(new BorderLayout(0, 18));
+        root.setBorder(new EmptyBorder(20, 24, 24, 24));
+
+        FuturisticUI.BannerPanel hero = FuturisticUI.banner("/assets/bannerMain.png", 350);
+        root.add(hero, BorderLayout.NORTH);
+
+        FuturisticUI.GlassPanel menuPanel = FuturisticUI.glass(new BorderLayout(18, 18));
+
+        JPanel textStack = new JPanel();
+        textStack.setOpaque(false);
+        textStack.setLayout(new BoxLayout(textStack, BoxLayout.Y_AXIS));
+
+        FuturisticUI.title(Title, "Mambo Store", 31);
+        Title.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+
+        FuturisticUI.body(Description,
+            "<html><div style='width:780px'>Tempat top up game, pulsa, dan e-money yang cepat, aman, dan siap dipakai kapan saja.</div></html>",
+            15);
+        Description.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+
+        FuturisticUI.body(Pilihan, "Pilih layanan", 16);
+        Pilihan.setForeground(FuturisticUI.VIOLET);
+        Pilihan.setFont(Pilihan.getFont().deriveFont(java.awt.Font.BOLD, 16f));
+        Pilihan.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+
+        textStack.add(Title);
+        textStack.add(Box.createVerticalStrut(6));
+        textStack.add(Description);
+        textStack.add(Box.createVerticalStrut(16));
+        textStack.add(Pilihan);
+
+        JPanel buttonGrid = new JPanel(new GridLayout(1, 3, 18, 0));
+        buttonGrid.setOpaque(false);
+
+        FuturisticUI.styleCommandButton(gameButton, FuturisticUI.VIOLET, new Color(172, 132, 255));
+        FuturisticUI.styleCommandButton(pulsaButton, new Color(132, 79, 242), new Color(207, 188, 255));
+        FuturisticUI.styleCommandButton(comingSoonButton, new Color(92, 62, 168), new Color(167, 132, 238));
+
+        buttonGrid.add(gameButton);
+        buttonGrid.add(pulsaButton);
+        buttonGrid.add(comingSoonButton);
+
+        menuPanel.add(textStack, BorderLayout.NORTH);
+        menuPanel.add(buttonGrid, BorderLayout.CENTER);
+
+        root.add(menuPanel, BorderLayout.CENTER);
+        setContentPane(root);
+        FuturisticUI.prepareFrame(this, "Mambo Store", 1060, 720);
+        revalidate();
+        repaint();
+    }
 
     private void addHoverEffect(javax.swing.JButton button) {
         java.awt.Color originalColor = button.getBackground();
@@ -200,10 +220,10 @@ public class MainWindow extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BackgroundMain;
     private javax.swing.JLabel Description;
     private javax.swing.JLabel Pilihan;
     private javax.swing.JLabel Title;
+    private javax.swing.JLabel background;
     private javax.swing.JButton comingSoonButton;
     private javax.swing.JButton gameButton;
     private javax.swing.JButton pulsaButton;
