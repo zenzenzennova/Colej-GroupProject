@@ -118,11 +118,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_gameButtonActionPerformed
 
     private void applyFuturisticLayout() {
-        FuturisticUI.BackgroundPanel root = FuturisticUI.background("/assets/bannerMain.png");
+        FuturisticUI.BackgroundPanel root = FuturisticUI.background();
         root.setLayout(new BorderLayout(0, 18));
         root.setBorder(new EmptyBorder(20, 24, 24, 24));
 
-        FuturisticUI.BannerPanel hero = FuturisticUI.banner("/assets/bannerMain.png", 350);
+        FuturisticUI.BannerPanel hero = FuturisticUI.banner("/assets/bannerMain.png", 390);
         root.add(hero, BorderLayout.NORTH);
 
         FuturisticUI.GlassPanel menuPanel = FuturisticUI.glass(new BorderLayout(18, 18));
@@ -166,7 +166,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         root.add(menuPanel, BorderLayout.CENTER);
         setContentPane(root);
-        FuturisticUI.prepareFrame(this, "Mambo Store", 1060, 720);
+        FuturisticUI.prepareFrame(this, "Mambo Store", 1060, 780);
         revalidate();
         repaint();
     }

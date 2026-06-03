@@ -1,3 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author Zennova
+ */
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -31,6 +40,7 @@ import javax.swing.plaf.basic.BasicButtonUI;
 final class FuturisticUI {
 
     static final Color PAGE_DARK = new Color(48, 27, 98);
+    static final Color PAGE_LIGHT = new Color(250, 248, 255);
     static final Color GLASS_DARK = new Color(244, 239, 255, 218);
     static final Color GLASS_LIGHT = new Color(255, 255, 255, 186);
     static final Color CYAN = new Color(205, 190, 255);
@@ -52,8 +62,12 @@ final class FuturisticUI {
         frame.setLocationRelativeTo(null);
     }
 
-    static BackgroundPanel background(String resource) {
-        return new BackgroundPanel(resource);
+    static BackgroundPanel background() {
+        return new BackgroundPanel(PAGE_LIGHT, PAGE_LIGHT, null);
+    }
+
+    static BackgroundPanel background(Color start, Color end, Color accent) {
+        return new BackgroundPanel(start, end, accent);
     }
 
     static BannerPanel banner(String resource, int height) {
@@ -64,7 +78,17 @@ final class FuturisticUI {
     }
 
     static GlassPanel glass(LayoutManager layout) {
-        return new GlassPanel(layout);
+        return new GlassPanel(
+            layout,
+            new Color(94, 50, 176, 42),
+            GLASS_LIGHT,
+            GLASS_DARK,
+            new Color(116, 57, 232, 118)
+        );
+    }
+
+    static GlassPanel glass(LayoutManager layout, Color shadow, Color start, Color end, Color border) {
+        return new GlassPanel(layout, shadow, start, end, border);
     }
 
     static JLabel title(JLabel label, String text, int size) {
@@ -94,13 +118,17 @@ final class FuturisticUI {
     }
 
     static void styleTextField(JTextField field) {
+        styleTextField(field, PAGE_DARK, VIOLET, CYAN);
+    }
+
+    static void styleTextField(JTextField field, Color text, Color accent, Color border) {
         field.setFont(new Font(FONT, Font.BOLD, 18));
-        field.setForeground(PAGE_DARK);
-        field.setCaretColor(VIOLET);
+        field.setForeground(text);
+        field.setCaretColor(accent);
         field.setSelectedTextColor(WHITE);
-        field.setSelectionColor(VIOLET);
+        field.setSelectionColor(accent);
         field.setOpaque(false);
-        field.setBorder(new RoundedBorder(CYAN, new Insets(12, 16, 12, 16), 16));
+        field.setBorder(new RoundedBorder(border, new Insets(12, 16, 12, 16), 16));
     }
 
     private static void styleButtonBase(AbstractButton button, Color start, Color end, int radius) {
@@ -142,41 +170,32 @@ final class FuturisticUI {
 
     static final class BackgroundPanel extends JPanel {
 
-        private final Image image;
+        private final Color start;
+        private final Color end;
+        private final Color accent;
 
-        BackgroundPanel(String resource) {
-            this.image = loadImage(resource);
-            setOpaque(false);
+        BackgroundPanel(Color start, Color end, Color accent) {
+            this.start = start;
+            this.end = end;
+            this.accent = accent;
+            setBackground(start);
+            setOpaque(true);
         }
 
         @Override
         protected void paintComponent(Graphics graphics) {
-            Graphics2D g2 = (Graphics2D) graphics.create();
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-            if (image != null) {
-                drawCover(g2, image, getWidth(), getHeight(), 0.5, 0.35);
-            } else {
-                g2.setPaint(new GradientPaint(0, 0, WHITE, getWidth(), getHeight(), new Color(217, 196, 255)));
-                g2.fillRect(0, 0, getWidth(), getHeight());
-            }
-
-            g2.setPaint(new GradientPaint(0, 0, new Color(255, 255, 255, 172), getWidth(), getHeight(), new Color(138, 79, 255, 86)));
-            g2.fillRect(0, 0, getWidth(), getHeight());
-
-            g2.setComposite(AlphaComposite.SrcOver.derive(0.16f));
-            g2.setColor(VIOLET);
-            for (int x = -getHeight(); x < getWidth(); x += 92) {
-                g2.drawLine(x, getHeight(), x + getHeight(), 0);
-            }
-            g2.setComposite(AlphaComposite.SrcOver.derive(0.18f));
-            g2.setColor(new Color(255, 255, 255));
-            for (int y = 48; y < getHeight(); y += 78) {
-                g2.drawLine(0, y, getWidth(), y + 22);
-            }
-
-            g2.dispose();
             super.paintComponent(graphics);
+            Graphics2D g2 = (Graphics2D) graphics.create();
+            g2.setPaint(new GradientPaint(0, 0, start, getWidth(), getHeight(), end));
+            g2.fillRect(0, 0, getWidth(), getHeight());
+            if (accent != null) {
+                g2.setComposite(AlphaComposite.SrcOver.derive(0.14f));
+                g2.setColor(accent);
+                for (int x = -getHeight(); x < getWidth(); x += 112) {
+                    g2.drawLine(x, getHeight(), x + getHeight(), 0);
+                }
+            }
+            g2.dispose();
         }
     }
 
@@ -205,7 +224,7 @@ final class FuturisticUI {
             g2.setPaint(new GradientPaint(0, 0, new Color(49, 25, 113), width, height, new Color(9, 198, 219)));
             g2.fillRect(0, 0, width, height);
             if (image != null) {
-                drawCover(g2, image, width, Math.max(1, height - 12), 0.5, 0.22);
+                drawCover(g2, image, width, Math.max(1, height - 12), 0.5, 0.44);
             }
             g2.setPaint(new GradientPaint(0, 0, new Color(4, 8, 28, 20), width, height, new Color(4, 8, 28, 96)));
             g2.fillRect(0, 0, width, height);
@@ -221,8 +240,17 @@ final class FuturisticUI {
 
     static final class GlassPanel extends JPanel {
 
-        GlassPanel(LayoutManager layout) {
+        private final Color shadow;
+        private final Color start;
+        private final Color end;
+        private final Color border;
+
+        GlassPanel(LayoutManager layout, Color shadow, Color start, Color end, Color border) {
             super(layout);
+            this.shadow = shadow;
+            this.start = start;
+            this.end = end;
+            this.border = border;
             setOpaque(false);
             setBorder(new EmptyBorder(22, 24, 24, 24));
         }
@@ -234,14 +262,14 @@ final class FuturisticUI {
             int width = getWidth();
             int height = getHeight();
 
-            g2.setColor(new Color(94, 50, 176, 42));
+            g2.setColor(shadow);
             g2.fillRoundRect(5, 8, Math.max(0, width - 10), Math.max(0, height - 10), 24, 24);
 
-            g2.setPaint(new GradientPaint(0, 0, GLASS_LIGHT, width, height, GLASS_DARK));
+            g2.setPaint(new GradientPaint(0, 0, start, width, height, end));
             g2.fillRoundRect(0, 0, Math.max(0, width - 1), Math.max(0, height - 1), 24, 24);
 
             g2.setStroke(new BasicStroke(1.4f));
-            g2.setColor(new Color(116, 57, 232, 118));
+            g2.setColor(border);
             g2.drawRoundRect(0, 0, Math.max(0, width - 1), Math.max(0, height - 1), 24, 24);
 
             g2.dispose();

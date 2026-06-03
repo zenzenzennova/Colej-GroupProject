@@ -324,11 +324,11 @@ public class PulsaWindow extends javax.swing.JFrame {
     }
 
     private void applyFuturisticLayout() {
-        FuturisticUI.BackgroundPanel root = FuturisticUI.background("/assets/bannerPulsa.png");
+        FuturisticUI.BackgroundPanel root = FuturisticUI.background();
         root.setLayout(new BorderLayout(0, 18));
         root.setBorder(new EmptyBorder(18, 22, 22, 22));
 
-        root.add(FuturisticUI.banner("/assets/bannerPulsa.png", 230), BorderLayout.NORTH);
+        root.add(FuturisticUI.banner("/assets/bannerPulsa.png", 360), BorderLayout.NORTH);
 
         FuturisticUI.GlassPanel panel = FuturisticUI.glass(new BorderLayout(18, 18));
 
@@ -405,7 +405,7 @@ public class PulsaWindow extends javax.swing.JFrame {
 
         root.add(panel, BorderLayout.CENTER);
         setContentPane(root);
-        FuturisticUI.prepareFrame(this, "Mambo Store - Pulsa & E-Money", 1040, 780);
+        FuturisticUI.prepareFrame(this, "Mambo Store - Pulsa & E-Money", 1040, 860);
         revalidate();
         repaint();
     }

@@ -18,6 +18,14 @@ import javax.swing.border.EmptyBorder;
 public class TopUpWindow extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TopUpWindow.class.getName());
+    private static final Color GAME_BG_START = new Color(251, 246, 240);
+    private static final Color GAME_BG_END = new Color(231, 241, 247);
+    private static final Color GAME_INK = new Color(26, 47, 66);
+    private static final Color GAME_MUTED = new Color(81, 95, 111);
+    private static final Color GAME_CORAL = new Color(235, 80, 91);
+    private static final Color GAME_SALMON = new Color(247, 143, 128);
+    private static final Color GAME_BLUE = new Color(31, 90, 123);
+    private static final Color GAME_CYAN = new Color(81, 169, 196);
 
     /**
      * Creates new form TopUpWindow
@@ -263,21 +271,29 @@ public class TopUpWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void applyFuturisticLayout() {
-        FuturisticUI.BackgroundPanel root = FuturisticUI.background("/assets/bgGameViolet.png");
+        FuturisticUI.BackgroundPanel root = FuturisticUI.background(GAME_BG_START, GAME_BG_END, GAME_CORAL);
         root.setLayout(new BorderLayout(0, 18));
         root.setBorder(new EmptyBorder(18, 22, 22, 22));
 
-        root.add(FuturisticUI.banner("/assets/bannerMain.png", 260), BorderLayout.NORTH);
+        root.add(FuturisticUI.banner("/assets/bgGame.jpg", 340), BorderLayout.NORTH);
 
-        FuturisticUI.GlassPanel panel = FuturisticUI.glass(new BorderLayout(18, 18));
+        FuturisticUI.GlassPanel panel = FuturisticUI.glass(
+            new BorderLayout(18, 18),
+            new Color(31, 90, 123, 38),
+            new Color(255, 252, 247, 226),
+            new Color(226, 240, 247, 214),
+            new Color(235, 80, 91, 116)
+        );
 
         JPanel header = new JPanel();
         header.setOpaque(false);
         header.setLayout(new BoxLayout(header, BoxLayout.Y_AXIS));
 
         FuturisticUI.title(jLabel1, "Top Up Game", 30);
+        jLabel1.setForeground(GAME_INK);
         jLabel1.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
         FuturisticUI.body(jLabel2, "Pilih game tujuan, lalu masukkan nominal top up dalam Rupiah.", 15);
+        jLabel2.setForeground(GAME_MUTED);
         jLabel2.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
 
         header.add(jLabel1);
@@ -287,10 +303,10 @@ public class TopUpWindow extends javax.swing.JFrame {
         JPanel gameGrid = new JPanel(new GridLayout(2, 2, 14, 14));
         gameGrid.setOpaque(false);
 
-        FuturisticUI.styleToggleButton(valorantButton, new Color(124, 57, 226), new Color(196, 170, 255));
-        FuturisticUI.styleToggleButton(hsrButton, new Color(104, 75, 203), new Color(180, 149, 255));
-        FuturisticUI.styleToggleButton(mlbbButton, new Color(145, 84, 243), new Color(212, 195, 255));
-        FuturisticUI.styleToggleButton(wuwaButton, new Color(84, 62, 158), new Color(177, 145, 244));
+        FuturisticUI.styleToggleButton(valorantButton, GAME_CORAL, GAME_SALMON);
+        FuturisticUI.styleToggleButton(hsrButton, GAME_BLUE, GAME_CYAN);
+        FuturisticUI.styleToggleButton(mlbbButton, new Color(192, 83, 104), new Color(240, 153, 132));
+        FuturisticUI.styleToggleButton(wuwaButton, new Color(42, 61, 82), new Color(102, 130, 148));
 
         gameGrid.add(valorantButton);
         gameGrid.add(hsrButton);
@@ -302,15 +318,16 @@ public class TopUpWindow extends javax.swing.JFrame {
         formStack.setLayout(new BoxLayout(formStack, BoxLayout.Y_AXIS));
 
         FuturisticUI.body(jLabel3, "Nominal top up (Rupiah)", 15);
+        jLabel3.setForeground(GAME_MUTED);
         jLabel3.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
-        FuturisticUI.styleTextField(jTextField1);
+        FuturisticUI.styleTextField(jTextField1, GAME_INK, GAME_CORAL, new Color(81, 169, 196));
         jTextField1.setMaximumSize(new java.awt.Dimension(Integer.MAX_VALUE, 54));
         jTextField1.setPreferredSize(new java.awt.Dimension(10, 54));
 
         JPanel actions = new JPanel(new GridLayout(1, 2, 14, 0));
         actions.setOpaque(false);
-        FuturisticUI.styleCommandButton(confirmButton, FuturisticUI.VIOLET, new Color(177, 139, 255));
-        FuturisticUI.styleCommandButton(backButton, new Color(82, 61, 151), new Color(151, 108, 232));
+        FuturisticUI.styleCommandButton(confirmButton, GAME_CORAL, GAME_SALMON);
+        FuturisticUI.styleCommandButton(backButton, GAME_BLUE, GAME_CYAN);
         actions.add(confirmButton);
         actions.add(backButton);
 
@@ -326,7 +343,7 @@ public class TopUpWindow extends javax.swing.JFrame {
 
         root.add(panel, BorderLayout.CENTER);
         setContentPane(root);
-        FuturisticUI.prepareFrame(this, "Mambo Store - Top Up Game", 1040, 740);
+        FuturisticUI.prepareFrame(this, "Mambo Store - Top Up Game", 1040, 840);
         revalidate();
         repaint();
     }

@@ -1,6 +1,6 @@
 # Mambo Store - Java GUI Top Up
 
-Mambo Store adalah aplikasi Java Swing untuk simulasi top up game, pulsa, dan e-money. Project ini dibuat sebagai tugas GUI Java dengan tampilan violet-white futuristik, banner visual di setiap halaman utama, validasi nominal, dan dialog pembayaran QRIS atau Virtual Account.
+Mambo Store adalah aplikasi Java Swing untuk simulasi top up game, pulsa, dan e-money. Project ini dibuat sebagai tugas GUI Java dengan background putih-violet yang bersih, banner visual besar di setiap halaman utama, validasi nominal, dan dialog pembayaran QRIS atau Virtual Account.
 
 ## Fitur
 
@@ -13,15 +13,24 @@ Mambo Store adalah aplikasi Java Swing untuk simulasi top up game, pulsa, dan e-
 - Dialog pembayaran dengan pilihan QRIS atau Virtual Account.
 - Generate QR Code pembayaran memakai library ZXing.
 
+## Tampilan GUI Terbaru
+
+Main Window dan Pulsa & E-Money Window memakai background polos light violet/white agar konten lebih rapi dan banner lebih menonjol. Top Up Game Window memakai theme cream, coral, dan biru yang mengikuti warna `bgGame.jpg`.
+
+- Main Window memakai banner `src/assets/bannerMain.png`.
+- Top Up Game Window memakai banner `src/assets/bgGame.jpg` dengan warna tombol dan panel yang selaras dengan banner.
+- Pulsa & E-Money Window memakai banner `src/assets/bannerPulsa.png`.
+- Area banner dibuat lebih besar supaya gambar terlihat lebih proporsional di setiap window.
+
 ## Screenshot
 
 ### Main Window
 
 ![Main Window](docs/screenshots/main-window.png)
 
-### Top Up Game Window
+### Top Up Game Window - bgGame Theme
 
-![Top Up Game Window](docs/screenshots/game-topup-window.png)
+![Top Up Game Window bgGame Theme](docs/screenshots/game-topup-window.png)
 
 ### Pulsa & E-Money Window
 

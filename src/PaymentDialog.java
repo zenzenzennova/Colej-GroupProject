@@ -60,6 +60,7 @@ public class PaymentDialog {
             ImageIcon qrIcon = generateQR(qrContent, 250);
 
             JPanel panel = new JPanel(new BorderLayout(10, 10));
+            panel.setBackground(FuturisticUI.PAGE_LIGHT);
 
             JLabel infoLabel = new JLabel(
                 "<html><center>" +
@@ -106,6 +107,7 @@ public class PaymentDialog {
             vaNumber = vaNumber.substring(0, 16);
 
             JPanel panel = new JPanel();
+            panel.setBackground(FuturisticUI.PAGE_LIGHT);
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
             JLabel info = new JLabel(
