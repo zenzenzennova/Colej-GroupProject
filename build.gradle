@@ -1,0 +1,42 @@
+plugins {
+    id 'application'
+    id 'java'
+}
+
+group = 'com.mambostore'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.zxing:core:3.5.2'
+    implementation 'com.google.zxing:javase:3.5.2'
+}
+
+application {
+    mainClass = 'MainWindow'
+    applicationDefaultJvmArgs = [
+        '-Dawt.useSystemAAFontSettings=on',
+        '-Dswing.aatext=true'
+    ]
+}
+
+tasks.withType(JavaExec).configureEach {
+    environment '_JAVA_AWT_WM_NONREPARENTING', '1'
+}
+
+tasks.named('jar') {
+    manifest {
+        attributes(
+            'Main-Class': 'MainWindow'
+        )
+    }
+}

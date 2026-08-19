@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run Mambo Store (MainWindow)",
+            "request": "launch",
+            "mainClass": "MainWindow",
+            "projectName": "mambo-store",
+            "env": {
+                "_JAVA_AWT_WM_NONREPARENTING": "1"
+            },
+            "vmArgs": "-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
+        }
+    ]
+}

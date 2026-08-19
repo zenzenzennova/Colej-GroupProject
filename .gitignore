@@ -1,0 +1,54 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+hs_err_pid*
+replay_pid*
+
+# Package files
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Exclude generated JARs, but keep libraries and gradle wrapper
+*.jar
+!lib/*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# Build output directories
+target/
+build/
+dist/
+out/
+bin/
+
+# Gradle directory
+.gradle/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# NetBeans
+nbproject/private/
+.nb-gradle/
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
