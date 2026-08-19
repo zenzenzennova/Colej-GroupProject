@@ -35,6 +35,9 @@ bin/
 *.iws
 *.ipr
 
+# VS Code
+.vscode/
+
 # Eclipse
 .settings/
 .project
